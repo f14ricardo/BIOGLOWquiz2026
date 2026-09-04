@@ -1,65 +1,100 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f6b45">
-<title>Quiz FLL BIOGLOW — MacGyvers</title>
-<style>
-:root{--bg:#f4f8f3;--card:#fff;--text:#193128;--muted:#6d7f76;--pri:#136f48;--pri2:#0d5336;--ok:#177245;--bad:#a53a3a;--bd:#dce8df;--shadow:0 16px 40px rgba(24,72,48,.1)}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);background:radial-gradient(circle at 10% 10%,rgba(72,160,103,.1),transparent 24rem),radial-gradient(circle at 90% 15%,rgba(72,130,190,.08),transparent 26rem),var(--bg);min-height:100vh}button,input{font:inherit}button{cursor:pointer}.shell{width:min(100% - 28px,980px);margin:auto;min-height:100vh;display:flex;flex-direction:column}header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0 10px}.brand{display:flex;align-items:center;gap:12px;font-weight:900}.logo{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(145deg,#0e6d45,#1a8b58);color:white;box-shadow:var(--shadow);font-size:22px}.chip,.badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:#e8f5ec;border:1px solid #d2ead9;color:var(--pri2);font-size:13px;font-weight:800}main{flex:1;display:grid;place-items:center;padding:20px 0 32px}.screen{display:none;width:100%;animation:fade .25s ease}.screen.active{display:block}@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}.hero,.card,.results{background:var(--card);border:1px solid var(--bd);box-shadow:var(--shadow);border-radius:28px}.hero{padding:48px;position:relative;overflow:hidden}.hero:after{content:"🌿  🤖  🧠";position:absolute;right:24px;bottom:16px;font-size:64px;opacity:.08;transform:rotate(-4deg)}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:#edf8f0;border:1px solid #d7ebdc;color:var(--pri);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.05em}h1{font-size:clamp(34px,6vw,62px);line-height:.98;margin:20px 0 16px;letter-spacing:-.045em;max-width:760px}.sub{font-size:clamp(17px,2.2vw,21px);color:var(--muted);line-height:1.55;max-width:720px}.features{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0}.feature{padding:15px;border-radius:17px;border:1px solid var(--bd);background:#fff}.feature strong{display:block;font-size:14px}.feature span{font-size:12px;color:var(--muted)}.row{display:flex;gap:12px;margin-top:24px}.input{flex:1;min-width:0;padding:15px 17px;border:1px solid var(--bd);border-radius:14px;outline:0}.input:focus{border-color:#8ab99a;box-shadow:0 0 0 4px rgba(19,111,72,.08)}.btn{border:0;border-radius:14px;padding:14px 20px;font-weight:900;transition:.18s}.primary{background:var(--pri);color:#fff;box-shadow:0 10px 24px rgba(19,111,72,.22)}.primary:hover{background:var(--pri2);transform:translateY(-1px)}.secondary{background:#fff;color:var(--pri2);border:1px solid var(--bd)}.top{padding:22px 24px 18px;border-bottom:1px solid var(--bd);background:linear-gradient(#fff,#fbfdfb)}.meta{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}.score{font-size:13px;font-weight:800;color:var(--muted)}.bar{height:10px;background:#edf2ee;border-radius:999px;overflow:hidden}.bar>div{height:100%;width:0;background:linear-gradient(90deg,#157248,#44a56e);transition:.25s}.body{padding:28px 24px 26px}.count{font-size:13px;font-weight:800;color:var(--muted);margin-bottom:10px}.q{font-size:clamp(22px,3.5vw,31px);line-height:1.24;letter-spacing:-.02em;margin:0 0 24px}.options{display:grid;gap:12px}.opt{width:100%;text-align:left;padding:16px 17px;border:1.5px solid var(--bd);background:#fff;border-radius:15px;display:flex;gap:13px;align-items:flex-start;color:var(--text);transition:.15s}.opt:hover:not(:disabled){border-color:#95bda3;background:#fbfefc;transform:translateY(-1px)}.letter{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;flex:0 0 30px;background:#eef5f0;color:var(--pri2);font-weight:900}.opt.correct{border-color:#69ad82;background:#edf9f1}.opt.correct .letter{background:var(--ok);color:#fff}.opt.wrong{border-color:#dc9797;background:#fff2f2}.opt.wrong .letter{background:var(--bad);color:#fff}.feedback{display:none;margin-top:18px;padding:16px 17px;border-radius:15px;line-height:1.5;border:1px solid var(--bd)}.feedback.show{display:block}.feedback.ok{background:#eef9f2;border-color:#c7e8d1}.feedback.bad{background:#fff3f3;border-color:#f0cccc}.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;flex-wrap:wrap}.results{overflow:hidden}.reshead{text-align:center;padding:34px 28px 26px;background:linear-gradient(140deg,#f2fbf5,#f9fcff)}.big{font-size:clamp(48px,9vw,84px);font-weight:900;letter-spacing:-.05em;color:var(--pri2);line-height:1;margin:10px 0 8px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:22px 24px 0}.stat{border:1px solid var(--bd);border-radius:16px;padding:16px;text-align:center}.stat strong{display:block;font-size:26px}.stat span{font-size:12px;color:var(--muted)}.cats{padding:22px 24px}.catrow{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px dashed var(--bd);font-size:14px}.catrow:last-child{border-bottom:0}.review{display:grid;gap:14px}.ritem{background:#fff;border:1px solid var(--bd);border-radius:18px;padding:18px;box-shadow:0 8px 20px rgba(24,72,48,.06)}footer{text-align:center;color:#819087;font-size:12px;padding:6px 0 24px}@media(max-width:760px){.hero{padding:30px 20px}.features{grid-template-columns:1fr 1fr}.row{flex-direction:column}.top,.body{padding-left:18px;padding-right:18px}.stats{grid-template-columns:1fr}.chip{display:none}.actions .btn{flex:1 1 100%}}@media(max-width:460px){.features{grid-template-columns:1fr}}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#126b48">
+  <title>Quiz FLL BIOGLOW — MacGyvers</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="shell">
-<header><div class="brand"><div class="logo">🤖</div><div>SESI MacGyvers</div></div><div class="chip">Treinamento FLL • BIOGLOW</div></header>
-<main>
-<section id="start" class="screen active"><div class="hero"><div class="eyebrow">🌿 Quiz interativo</div><h1>Quiz FLL BIOGLOW — MacGyvers</h1><p class="sub">Tapete, missões, regras e estratégia em uma atividade rápida para treinar a equipe antes dos desafios do Robot Game.</p><div class="features"><div class="feature"><strong>40 questões</strong><span>uma por vez</span></div><div class="feature"><strong>50 pontos</strong><span>pontuação total</span></div><div class="feature"><strong>5 categorias</strong><span>conteúdo organizado</span></div><div class="feature"><strong>Revisão final</strong><span>veja onde melhorar</span></div></div><div class="row"><input id="name" class="input" maxlength="40" placeholder="Nome do aluno ou da equipe (opcional)"><button id="startBtn" class="btn primary">Começar quiz →</button></div></div></section>
-<section id="quiz" class="screen"><div class="card"><div class="top"><div class="meta"><div id="badge" class="badge"></div><div id="score" class="score"></div></div><div class="bar"><div id="progress"></div></div></div><div class="body"><div id="count" class="count"></div><h2 id="question" class="q"></h2><div id="options" class="options"></div><div id="feedback" class="feedback"></div><div class="actions"><button id="nextBtn" class="btn primary" style="display:none"></button></div></div></div></section>
-<section id="result" class="screen"><div class="results"><div class="reshead"><div class="eyebrow">🏁 Resultado final</div><div id="resultScore" class="big"></div><div id="message" class="sub" style="margin:auto"></div></div><div class="stats"><div class="stat"><strong id="percent"></strong><span>Aproveitamento</span></div><div class="stat"><strong id="correct"></strong><span>Acertos</span></div><div class="stat"><strong id="wrong"></strong><span>Questões para revisar</span></div></div><div class="cats"><h3>Desempenho por categoria</h3><div id="catResults"></div><div class="actions"><button id="reviewBtn" class="btn secondary">Revisar respostas</button><button id="restartBtn" class="btn primary">Refazer quiz</button></div></div></div></section>
-<section id="review" class="screen"><div class="meta"><div><div class="eyebrow">📚 Revisão</div><h2>Respostas e explicações</h2></div><button id="backBtn" class="btn secondary">← Resultado</button></div><div id="reviewList" class="review"></div></section>
-</main><footer>Treinamento educacional — FLL BIOGLOW • SESI MacGyvers</footer></div>
-<script>
-const Q=[
-[1,"Biodiversidade e Tapete",1,"Qual é o principal tema da temporada BIOGLOW?",["Exploração espacial","Transporte de energia","Biodiversidade e ecossistemas","Arqueologia"],2,"A temporada trabalha biodiversidade, ecossistemas e relações entre seres vivos e ambiente."],
-[2,"Biodiversidade e Tapete",1,"O que significa biodiversidade?",["Somente a quantidade de árvores de um local","A variedade de seres vivos e suas relações em um ambiente","A quantidade de água existente em uma floresta","Apenas os animais ameaçados de extinção"],1,"Biodiversidade envolve a variedade da vida e as interações entre organismos e ambientes."],
-[3,"Biodiversidade e Tapete",1,"Ao observar o tapete BIOGLOW, qual ambiente aparece em maior destaque?",["Deserto","Oceano aberto","Região polar","Floresta tropical"],3,"O cenário destaca uma floresta tropical com rios e diferentes habitats."],
-[4,"Biodiversidade e Tapete",1,"Por que os rios presentes no tapete são importantes para o ecossistema?",["Servem apenas como obstáculos para o robô","Fornecem água, habitat e conectam diferentes áreas do ecossistema","Servem apenas para transporte humano","Não possuem relação com biodiversidade"],1,"Rios sustentam espécies, transportam nutrientes e conectam habitats."],
-[5,"Biodiversidade e Tapete",1,"Qual situação demonstra maior biodiversidade?",["Uma área contendo apenas uma espécie de planta","Uma área sem vegetação","Uma floresta com diferentes plantas, animais, fungos e microrganismos","Uma área totalmente pavimentada"],2,"Quanto maior a variedade de formas de vida, maior tende a ser a biodiversidade."],
-[6,"Biodiversidade e Tapete",1,"Por que os fungos são importantes para uma floresta?",["Apenas produzem sombra","Impedem o crescimento das árvores","Participam da decomposição e da ciclagem de nutrientes","Não possuem função ecológica"],2,"Fungos ajudam a decompor matéria orgânica e devolver nutrientes ao ambiente."],
-[7,"Biodiversidade e Tapete",1,"O que pode acontecer quando um habitat natural é destruído?",["A biodiversidade sempre aumenta","Nada muda","Espécies podem perder abrigo, alimento e áreas de reprodução","Todos os animais se adaptam imediatamente"],2,"A perda de habitat é uma das principais ameaças à biodiversidade."],
-[8,"Biodiversidade e Tapete",1,"Qual elemento do tapete poderia ajudar o robô a se orientar com um sensor de cor?",["Somente peças LEGO","Linhas e regiões de cores contrastantes do tapete","A parede da sala","A iluminação externa"],1,"Sensores de cor podem identificar linhas, bordas e contrastes do tapete."],
-[9,"Biodiversidade e Tapete",1,"Por que é importante observar cuidadosamente o tapete antes de programar o robô?",["Apenas para saber as cores","Para decorar o desenho","Para identificar trajetos, referências, obstáculos e posições das missões","Não é necessário observar o tapete"],2,"A leitura do campo ajuda a criar rotas mais curtas e confiáveis."],
-[10,"Biodiversidade e Tapete",1,"Se você fosse um pesquisador da BIOGLOW, qual atitude ajudaria a estudar um ecossistema?",["Retirar todos os animais da região","Modificar completamente o ambiente","Observar, coletar dados e reduzir impactos durante a pesquisa","Cortar a vegetação para facilitar o acesso"],2,"Uma boa pesquisa ambiental busca obter dados causando o menor impacto possível."],
-[11,"Missões BIOGLOW",1,"Na missão “Drone Survey”, qual tecnologia é utilizada para observar a floresta?",["Submarino","Drone","Trem","Satélite LEGO"],1,"A missão faz referência ao uso de drones em levantamento e observação ambiental."],
-[12,"Missões BIOGLOW",1,"A missão “Exploding Seeds” está relacionada a qual processo natural?",["Formação de rochas","Migração de peixes","Dispersão de sementes","Formação de rios"],2,"A dispersão ajuda plantas a ocupar novas áreas e manter populações."],
-[13,"Missões BIOGLOW",1,"Na missão “Flip the Rock”, por que olhar embaixo de uma rocha pode ser importante para um pesquisador?",["Porque não existem organismos ali","Porque pequenos seres vivos podem utilizar aquele local como habitat","Para retirar todas as pedras da floresta","Apenas para medir o peso da rocha"],1,"Microhabitats sob rochas podem abrigar insetos, fungos e outros organismos."],
-[14,"Missões BIOGLOW",1,"Qual missão possui folhas e um katydid, um inseto camuflado?",["Reaching Roots","Forest Elder","Lucky Leaves","Drone Survey"],2,"Lucky Leaves inclui o katydid, cuja posição inicial pode variar conforme atualização oficial."],
-[15,"Missões BIOGLOW",1,"Na missão “Reaching Roots”, o assunto principal está relacionado a:",["Voos de drones","Raízes das plantas e suas conexões no ecossistema","Animais marinhos","Energia solar"],1,"Raízes sustentam plantas e participam de redes ecológicas importantes no solo."],
-[16,"Missões BIOGLOW",1,"A missão “Leafcutter Frenzy” apresenta qual animal trabalhando coletivamente?",["Abelhas","Cupins","Formigas cortadeiras","Borboletas"],2,"Formigas cortadeiras trabalham em grupo e têm papel importante no ecossistema."],
-[17,"Missões BIOGLOW",1,"A missão “Humongous Fungus” destaca uma rede subterrânea formada por fungos chamada:",["Clorofila","Fotossíntese","Micélio","Habitat aéreo"],2,"Micélio é a rede de filamentos que compõe grande parte do organismo dos fungos."],
-[18,"Missões BIOGLOW",1,"Qual missão envolve uma árvore antiga que precisa de suporte?",["Exploding Seeds","Forest Elder","Lucky Leaves","Drone Survey"],1,"Forest Elder destaca a importância ecológica de árvores antigas."],
-[19,"Missões BIOGLOW",1,"Em “Keystone Species”, o termo espécie-chave representa uma espécie que:",["Não interfere no ambiente","Vive apenas em ambientes artificiais","Possui grande importância para o equilíbrio do ecossistema","Precisa ser necessariamente o maior animal da floresta"],2,"Uma espécie-chave exerce influência desproporcional no funcionamento do ecossistema."],
-[20,"Missões BIOGLOW",1,"Qual missão trabalha diretamente com arquitetura pensada para aproximar seres humanos e natureza?",["Flip the Rock","Tangled","Seeds of Renewal","Biocentric Architecture"],3,"A arquitetura biocêntrica busca considerar outros seres vivos no planejamento de ambientes humanos."],
-[21,"Regras do Robot Game",1,"Quanto tempo dura uma partida do Robot Game?",["1 minuto","2 minutos","2 minutos e 30 segundos","5 minutos"],2,"A partida oficial dura 2 minutos e 30 segundos."],
-[22,"Regras do Robot Game",1,"Durante uma partida, o robô deve realizar suas missões de maneira:",["Controlada por controle remoto","Controlada por celular","Empurrada pelos alunos","Autônoma"],3,"O robô é programado previamente para executar suas ações de forma autônoma."],
-[23,"Regras do Robot Game",1,"Para que servem as áreas de lançamento?",["Para os árbitros ficarem durante a partida","Para guardar modelos de missão","Para preparar e iniciar o robô e os elementos que participarão daquela saída","Para estacionar o robô somente depois que o tempo terminar"],2,"As áreas de lançamento são usadas para organizar e iniciar cada nova saída do robô ao campo."],
-[24,"Regras do Robot Game",1,"Quantas fichas de precisão a equipe possui no início da partida?",["3","4","5","6"],3,"A equipe começa com seis fichas de precisão."],
-[25,"Regras do Robot Game",1,"O que pode acontecer se a equipe interromper manualmente o robô fora de Home?",["Nada","A equipe ganha pontos","Pode perder uma ficha de precisão","A partida reinicia automaticamente"],2,"Interromper o robô fora da área permitida pode gerar perda de uma ficha de precisão."],
-[26,"Regras do Robot Game",1,"Quantos controladores podem ser utilizados pela equipe em uma mesma partida?",["Quantos quiser","Dois","Três","Um"],3,"Apenas um controlador é permitido por partida."],
-[27,"Regras do Robot Game",1,"Qual é o número máximo de motores permitido em uma partida?",["2","3","4","6"],2,"O limite é de quatro motores permitidos no equipamento da partida."],
-[28,"Regras do Robot Game",1,"Qual destes sensores é permitido?",["GPS","Câmera com inteligência artificial","Sensor Wi-Fi","Sensor de cor"],3,"Sensores LEGO permitidos incluem cor, força/toque, distância e giroscópio conforme o conjunto e regras aplicáveis."],
-[29,"Regras do Robot Game",1,"Antes da partida, o robô e os equipamentos passam por:",["Uma corrida de velocidade","Uma pesagem obrigatória","Inspeção de equipamentos","Uma votação dos árbitros"],2,"A equipe apresenta seu equipamento para inspeção antes da partida."],
-[30,"Regras do Robot Game",1,"Quando termina o tempo de 2min30s, os técnicos devem:",["Continuar até o robô retornar à base","Fazer mais uma missão rapidamente","Mover os modelos para suas posições corretas","Parar o robô e não tocar em mais nada enquanto ocorre a pontuação"],3,"Ao final da partida, o estado do campo deve ser preservado para conferência da pontuação."],
-[31,"Estratégia",2,"Qual estratégia tende a economizar mais tempo?",["Fazer obrigatoriamente uma missão por saída","Programar trajetos aleatórios","Agrupar missões próximas em uma mesma saída","Fazer sempre a missão mais distante primeiro"],2,"Agrupar missões reduz deslocamentos e trocas entre saídas."],
-[32,"Estratégia",2,"Para aumentar a precisão de uma saída, uma boa estratégia é:",["Nunca testar o programa","Usar somente tempo de motor","Utilizar referências físicas e sensores para reposicionamento","Aumentar sempre a velocidade para 100%"],2,"Referências e sensores ajudam a compensar pequenos erros acumulados."],
-[33,"Estratégia",2,"Uma missão vale muitos pontos, mas o robô consegue realizá-la em apenas 20% dos testes. O que a equipe deveria considerar?",["Fazer a missão obrigatoriamente","Não realizar testes","Comparar risco, tempo, pontuação e confiabilidade antes de colocá-la na estratégia","Aumentar o tamanho do robô"],2,"Uma boa estratégia equilibra potencial de pontos com taxa de sucesso e tempo disponível."],
-[34,"Estratégia",2,"Por que retornar autonomamente para Home pode ser vantajoso?",["Porque encerra a partida","Porque permite preparar uma nova saída sem precisar interromper o robô fora de Home","Porque dobra os pontos das missões","Porque recupera todas as fichas já perdidas"],1,"Retornos confiáveis facilitam novas saídas e reduzem intervenções."],
-[35,"Estratégia",2,"Qual característica é mais desejável em uma estratégia de competição?",["Ser extremamente complexa","Ter o maior número possível de movimentos","Ser rápida, repetível e confiável","Depender de sorte"],2,"Consistência costuma valer mais que uma estratégia muito complexa e instável."],
-[36,"Situações-problema",2,"O robô saiu da área de lançamento e parou no meio do campo. Ainda faltam 90 segundos. O que vocês fariam?",["Pegariam o robô imediatamente sem considerar consequências","Encerrariam a partida","Decidiriam se vale a pena esperar ou interrompê-lo, sabendo que a intervenção fora de Home pode custar precisão","Pediriam para o árbitro completar a missão"],2,"A equipe deve avaliar tempo, pontos e a consequência de uma intervenção."],
-[37,"Situações-problema",2,"O robô retornou completamente para Home após completar duas missões. O que a equipe pode fazer?",["Não pode mais tocar nele","A partida termina","Pode prepará-lo para uma nova saída","Precisa esperar 30 segundos"],2,"O retorno permite preparar uma nova tentativa enquanto o tempo da partida continua."],
-[38,"Situações-problema",2,"Ao montar a estratégia, dois alunos descobrem que três missões próximas podem ser realizadas pela mesma rota. Qual é a melhor atitude?",["Ignorar a descoberta","Programar três saídas independentes obrigatoriamente","Testar uma única saída que tente executar as três missões","Pedir ao árbitro para escolher"],2,"Combinar missões próximas pode melhorar a eficiência, desde que a rota seja confiável."],
-[39,"Situações-problema",2,"O robô funciona perfeitamente 2 vezes em 10 testes. Outro programa marca menos pontos, mas funciona 9 vezes em 10. Em uma competição, qual merece maior atenção?",["Sempre o primeiro","Nenhum","O segundo, pois confiabilidade também faz parte da estratégia","Os dois são necessariamente iguais"],2,"Taxa de sucesso é um fator essencial na tomada de decisão estratégica."],
-[40,"Situações-problema",2,"Durante a missão Lucky Leaves, o grupo chega à competição e percebe que o katydid não está exatamente na posição encontrada nos treinos. O que fazer?",["Reclamar porque o campo está errado","Reposicionar manualmente o inseto","Pedir ao árbitro para colocá-lo no lugar treinado","Adaptar a estratégia, pois a posição inicial é propositalmente randomizada"],3,"A equipe deve estar preparada para a variação prevista oficialmente na posição inicial do katydid."]];
-const I={"Biodiversidade e Tapete":"🌿","Missões BIOGLOW":"🧩","Regras do Robot Game":"📘","Estratégia":"🧠","Situações-problema":"⚡"},L=["A","B","C","D"],MAX=50;let cur=0,pts=0,ans=[],student="";const $=id=>document.getElementById(id),screens=["start","quiz","result","review"];function show(id){screens.forEach(x=>$(x).classList.remove("active"));$(id).classList.add("active");scrollTo({top:0,behavior:"smooth"})}function start(){student=$("name").value.trim();cur=0;pts=0;ans=[];show("quiz");render()}function render(){const q=Q[cur];$("badge").textContent=`${I[q[1]]} ${q[1]}`;$("score").textContent=`Pontuação: ${pts} / ${MAX}`;$("count").textContent=`Questão ${cur+1} de ${Q.length} • vale ${q[2]} ponto${q[2]>1?"s":""}`;$("question").textContent=q[3];$("progress").style.width=`${cur/Q.length*100}%`;$("options").innerHTML="";q[4].forEach((o,i)=>{const b=document.createElement("button");b.className="opt";b.innerHTML=`<span class="letter">${L[i]}</span><span>${o}</span>`;b.onclick=()=>choose(i);$("options").appendChild(b)});$("feedback").className="feedback";$("feedback").innerHTML="";$("nextBtn").style.display="none"}function choose(sel){const q=Q[cur],ok=sel===q[5],bs=[...document.querySelectorAll(".opt")];bs.forEach((b,i)=>{b.disabled=true;if(i===q[5])b.classList.add("correct");if(i===sel&&!ok)b.classList.add("wrong")});if(ok)pts+=q[2];ans.push({sel,ok,earned:ok?q[2]:0});$("score").textContent=`Pontuação: ${pts} / ${MAX}`;$("feedback").className=`feedback show ${ok?"ok":"bad"}`;$("feedback").innerHTML=`<strong>${ok?"✅ Muito bem!":"🔎 Quase lá!"}</strong><div>${q[6]}</div>`;$("nextBtn").style.display="inline-flex";$("nextBtn").textContent=cur===Q.length-1?"Ver resultado →":"Próxima questão →"}function next(){if(cur<Q.length-1){cur++;render()}else finish()}function finish(){const c=ans.filter(a=>a.ok).length,w=Q.length-c,p=Math.round(pts/MAX*100);let m=p>=90?"Excelente! Vocês estão com domínio muito forte do conteúdo.":p>=75?"Ótimo desempenho! Falta pouco para ficar afiado para a competição.":p>=60?"Bom caminho. Revise principalmente as questões erradas e tente novamente.":"Hora de revisar com calma. O modo de revisão vai mostrar exatamente onde melhorar.";if(student)m=`${student}, ${m.charAt(0).toLowerCase()+m.slice(1)}`;$("resultScore").textContent=`${pts} / ${MAX}`;$("percent").textContent=`${p}%`;$("correct").textContent=c;$("wrong").textContent=w;$("message").textContent=m;cats();show("result")}function cats(){const g={};Q.forEach(q=>{g[q[1]]??={total:0,earned:0,correct:0,count:0};g[q[1]].total+=q[2];g[q[1]].count++});ans.forEach((a,i)=>{const q=Q[i];g[q[1]].earned+=a.earned;if(a.ok)g[q[1]].correct++});$("catResults").innerHTML=Object.entries(g).map(([k,v])=>`<div class="catrow"><div>${I[k]} <strong>${k}</strong><br><span style="color:var(--muted)">${v.correct} de ${v.count} questões corretas</span></div><strong>${v.earned} / ${v.total} pts</strong></div>`).join("")}function review(){$("reviewList").innerHTML=Q.map((q,i)=>{const a=ans[i];return `<div class="ritem"><div class="badge" style="margin-bottom:10px">${I[q[1]]} ${q[1]}</div><h3>${q[0]}. ${q[3]}</h3><p>Sua resposta: <strong>${L[a.sel]}) ${q[4][a.sel]}</strong> ${a.ok?"✅":"❌"}</p>${a.ok?"":`<p>Resposta correta: <strong>${L[q[5]]}) ${q[4][q[5]]}</strong></p>`}<p style="color:var(--muted)">${q[6]}</p></div>`}).join("");show("review")}$("startBtn").onclick=start;$("nextBtn").onclick=next;$("restartBtn").onclick=()=>show("start");$("reviewBtn").onclick=review;$("backBtn").onclick=()=>show("result");$("name").addEventListener("keydown",e=>{if(e.key==="Enter")start()});
-</script>
-</body></html>
+  <header>
+    <div class="brand"><div class="logo">🤖</div><strong>SESI MacGyvers</strong></div>
+    <div class="chip">Treinamento FLL • BIOGLOW</div>
+  </header>
+
+  <main>
+    <section id="start" class="screen active">
+      <div class="hero">
+        <div class="eyebrow">🌿 Quiz interativo</div>
+        <h1>Quiz FLL BIOGLOW — MacGyvers</h1>
+        <p class="sub">Tapete, missões, regras e estratégia em uma atividade de preparação para o Robot Game.</p>
+
+        <div class="features">
+          <div class="feature"><strong>40 questões</strong><span>uma por vez</span></div>
+          <div class="feature"><strong>50 pontos</strong><span>pontuação total</span></div>
+          <div class="feature"><strong>5 categorias</strong><span>conteúdo organizado</span></div>
+          <div class="feature"><strong>Relatório completo</strong><span>enviado ao técnico</span></div>
+        </div>
+
+        <div class="notice">📨 Ao finalizar, o relatório completo será enviado para o técnico/responsável.</div>
+
+        <div class="formrow">
+          <input id="name" class="input" maxlength="60" placeholder="Nome do aluno ou da equipe *" required>
+          <input id="group" class="input" maxlength="40" placeholder="Turma / grupo (opcional)">
+          <button id="startBtn" class="btn primary">Começar quiz →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="quiz" class="screen">
+      <div class="card">
+        <div class="top">
+          <div class="meta"><div id="badge" class="badge"></div><div id="score" class="score"></div></div>
+          <div class="bar"><div id="progress"></div></div>
+        </div>
+        <div class="body">
+          <div id="count" class="count"></div>
+          <h2 id="question" class="question"></h2>
+          <div id="options" class="options"></div>
+          <div id="feedback" class="feedback"></div>
+          <div class="actions"><button id="nextBtn" class="btn primary" hidden></button></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="results">
+        <div class="reshead">
+          <div class="eyebrow">🏁 Resultado final</div>
+          <div id="resultScore" class="big"></div>
+          <div id="message" class="sub center"></div>
+          <div id="emailStatus" class="email-status"></div>
+          <button id="resendBtn" class="btn secondary small" hidden>Reenviar relatório</button>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><strong id="percent"></strong><span>Aproveitamento</span></div>
+          <div class="stat"><strong id="correct"></strong><span>Acertos</span></div>
+          <div class="stat"><strong id="wrong"></strong><span>Questões para revisar</span></div>
+        </div>
+
+        <div class="cats">
+          <h3>Desempenho por categoria</h3>
+          <div id="catResults"></div>
+        </div>
+
+        <div class="result-actions">
+          <button id="reviewBtn" class="btn secondary">Revisar respostas</button>
+          <button id="restartBtn" class="btn primary">Refazer quiz</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="review" class="screen">
+      <div class="reviewtop">
+        <div><div class="eyebrow">📚 Revisão</div><h2>Respostas e explicações</h2></div>
+        <button id="backBtn" class="btn secondary">← Resultado</button>
+      </div>
+      <div id="reviewList" class="review"></div>
+    </section>
+  </main>
+
+  <footer>Treinamento educacional — FLL BIOGLOW • SESI MacGyvers</footer>
+</div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
