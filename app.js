@@ -13,20 +13,31 @@ function start(){
 }
 
 function render(){
-  const q=Q[i];$("badge").textContent=`${icons[q.category]||"•"} ${q.category}`;$("score").textContent=`Pontuação: ${score} / ${MAX}`;
-  $("count").textContent=`Questão ${i+1} de ${Q.length} • vale ${q.points} ponto${q.points>1?"s":""}`;$("question").textContent=q.question;$("progress").style.width=`${i/Q.length*100}%`;
+  const q=Q[i],nextBtn=$("nextBtn");
+  $("badge").textContent=`${icons[q.category]||"•"} ${q.category}`;
+  $("score").textContent=`Pontuação: ${score} / ${MAX}`;
+  $("count").textContent=`Questão ${i+1} de ${Q.length} • vale ${q.points} ponto${q.points>1?"s":""}`;
+  $("question").textContent=q.question;
+  $("progress").style.width=`${i/Q.length*100}%`;
   $("options").innerHTML="";
   q.options.forEach((txt,n)=>{const b=document.createElement("button");b.className="opt";b.innerHTML=`<span class="letter">${L[n]}</span><span>${txt}</span>`;b.onclick=()=>choose(n);$("options").appendChild(b)});
-  $("feedback").className="feedback";$("feedback").innerHTML="";$("nextBtn").hidden=true
+  $("feedback").className="feedback";
+  $("feedback").innerHTML="";
+  nextBtn.hidden=false;
+  nextBtn.disabled=true;
+  nextBtn.textContent="Selecione uma resposta";
 }
 
 function choose(n){
-  const q=Q[i],ok=n===q.answer,buttons=[...document.querySelectorAll(".opt")];
+  const q=Q[i],ok=n===q.answer,buttons=[...document.querySelectorAll(".opt")],nextBtn=$("nextBtn");
   buttons.forEach((b,x)=>{b.disabled=true;if(x===q.answer)b.classList.add("correct");if(x===n&&!ok)b.classList.add("wrong")});
-  if(ok)score+=q.points;answers.push({selected:n,correct:ok,points:ok?q.points:0});
+  if(ok)score+=q.points;
+  answers.push({selected:n,correct:ok,points:ok?q.points:0});
   $("score").textContent=`Pontuação: ${score} / ${MAX}`;
-  $("feedback").className=`feedback show ${ok?"ok":"bad"}`;$("feedback").innerHTML=`<strong>${ok?"✅ Muito bem!":"🔎 Quase lá!"}</strong><div>${q.explanation}</div>`;
-  $("nextBtn").hidden=false;$("nextBtn").textContent=i===Q.length-1?"Ver resultado →":"Próxima questão →"
+  $("feedback").className=`feedback show ${ok?"ok":"bad"}`;
+  $("feedback").innerHTML=`<strong>${ok?"✅ Muito bem!":"🔎 Quase lá!"}</strong><div>${q.explanation}</div>`;
+  nextBtn.disabled=false;
+  nextBtn.textContent=i===Q.length-1?"Ver resultado →":"Próxima questão →";
 }
 
 function next(){if(i<Q.length-1){i++;render()}else finish()}
